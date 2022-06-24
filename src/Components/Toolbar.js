@@ -1,5 +1,6 @@
 import React from "react"
 import { Navbar, NavItem, Nav, Collapse, NavbarBrand, NavbarToggler, NavLink } from "reactstrap"
+import Logo from "../Assets/Logo.png"
 
 class Toolbar extends React.Component {
     constructor() {
@@ -13,6 +14,7 @@ class Toolbar extends React.Component {
             <div>
                 <Navbar color="danger" expand="md" dark>
                     <NavbarBrand href="/dashboard">
+                        <img src={Logo} style={{ width: "40px" }} alt="logo" />
                         PREPTRACKER
                     </NavbarBrand>
                     <NavbarToggler onClick={() => { this.setState({ visible: !this.state.visible }) }} />
