@@ -49,6 +49,16 @@ class SignUp extends React.Component {
                     code = "AA"
                 else if (this.state.branch === "EEE")
                     code = "A3"
+                else if (this.state.branch === "CS")
+                    code = "A7"
+                else if (this.state.branch === "CHEM")
+                    code = "A1"
+                else if (this.state.branch === "CIVIL")
+                    code = "A2"
+                else if (this.state.branch === "MECH")
+                    code = "A4"
+                else if (this.state.branch === "PHARMA")
+                    code = "A5"
                 else
                     code = "A8"
                 year = this.state.emailId.substring(1, 5)
@@ -224,6 +234,21 @@ class SignUp extends React.Component {
                                 </option>
                                 <option value="ENI">
                                     Electronics & Instrumentation
+                                </option>
+                                <option value="CS">
+                                    Computer Science
+                                </option>
+                                <option value="CHEM">
+                                    Chemical
+                                </option>
+                                <option value="MECH">
+                                    Mechanical
+                                </option>
+                                <option value="CIVIL">
+                                    Civil
+                                </option>
+                                <option value="PHARMA">
+                                    Pharmacy
                                 </option>
                             </Input>
                             <Input onChange={onChange} placeholder="Enter your password" name="password" value={this.state.password} style={{ marginBottom: "10px" }} type="password" />
