@@ -24,7 +24,6 @@ class Footer extends React.Component {
                             UPCOMING FEATURES
                         </div>
                         <div className="footer-content" style={{ textAlign: "center", color: "white", marginTop: "10px" }}>
-                            <div>OFF CAMPUS INTERNSHIP PROCESS</div>
                             <div>FINANCE PREPARATION</div>
                             <div>GATE EXAM PREPARATION</div>
                             <div>PSUs </div>

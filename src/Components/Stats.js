@@ -41,7 +41,7 @@ class Stats extends React.Component {
                     firestore.collection("users").get().then(Snapshot => {
                         var total = 0
                         Snapshot.forEach(document => {
-                            if (document.id.substring(0, 4) === year)
+                            if (document.id.substring(0, 4) === "2020")
                                 total += 1
                         })
                         this.setState({ totalUsers: total, isLoading: false })

@@ -31,11 +31,16 @@ class Toolbar extends React.Component {
                                     Preparation
                                 </NavLink>
                             </NavItem>
-                            {/* <NavItem>
+                            <NavItem>
                                 <NavLink href="/competition">
                                     Competition
                                 </NavLink>
-                            </NavItem> */}
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/jobs">
+                                    Jobs
+                                </NavLink>
+                            </NavItem>
                             <NavItem>
                                 <NavLink href="/profile">
                                     My Profile

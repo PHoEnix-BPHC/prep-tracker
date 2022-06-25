@@ -11,6 +11,7 @@ import Competition from './Pages/Competition';
 import Preparation from './Pages/Preparation';
 import UserHome from './Pages/UserHome';
 import React from 'react'
+import Jobs from './Pages/Jobs';
 
 class App extends React.Component {
   constructor() {
@@ -34,6 +35,7 @@ class App extends React.Component {
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/preparation" element={<PrivateRoute><Preparation /></PrivateRoute>} />
           <Route path="/competition" element={<PrivateRoute><Competition /></PrivateRoute>} />
+          <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
           <Route path="/" exact element={<UserHome />} />
         </Routes>
       </div>
