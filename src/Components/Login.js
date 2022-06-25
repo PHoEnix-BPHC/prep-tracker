@@ -5,6 +5,7 @@ import { CardBody, Card, CardTitle, CardSubtitle, Input, Button, ModalHeader, Mo
 import bcrypt from "bcryptjs"
 import emailjs from "@emailjs/browser"
 import Loading from "./Loading"
+import { encryptStorage } from "./Encryption"
 
 
 class Login extends React.Component {
@@ -17,7 +18,7 @@ class Login extends React.Component {
             alert: "",
             user: "",
             newPassword: "",
-            sentOtp: 999,
+            sentOtp: 0,
             otp: "",
             isModal: false,
             isLoading: false,
@@ -25,7 +26,7 @@ class Login extends React.Component {
         }
     }
     componentDidMount() {
-        const user = localStorage.getItem("IDNumber")
+        const user = encryptStorage.getItem("IDNumber")
         this.setState({ user: user })
     }
     render() {
@@ -120,10 +121,9 @@ class Login extends React.Component {
                 }
                 else {
                     allDocuments.forEach(document => {
-                        console.log(this.state.password, document.data().password);
                         bcrypt.compare(this.state.password, document.data().password).then(result => {
                             if (result) {
-                                localStorage.setItem("IDNumber", document.data().idNo)
+                                encryptStorage.setItem("IDNumber", document.data().idNo)
                                 this.setState({ alert: "Login Successful. Redirecting..", isLoading: false })
                                 setTimeout(() => {
                                     this.setState({ alert: "" })

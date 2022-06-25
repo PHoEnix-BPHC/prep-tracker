@@ -1,3 +1,4 @@
+import { encryptStorage } from "../Encryption"
 import React from "react"
 import { Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 import { firestore } from "../../config"
@@ -16,7 +17,7 @@ class ChapterWise extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: false })
-        const user = localStorage.getItem("IDNumber")
+        const user = encryptStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(doc => {
             this.setState({ role: doc.data().role }, () => {
                 if (this.state.role === "IT") {

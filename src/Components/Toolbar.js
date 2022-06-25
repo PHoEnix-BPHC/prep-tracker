@@ -1,6 +1,7 @@
 import React from "react"
 import { Navbar, NavItem, Nav, Collapse, NavbarBrand, NavbarToggler, NavLink } from "reactstrap"
 import Logo from "../Assets/Logo.png"
+import { encryptStorage } from "./Encryption"
 
 class Toolbar extends React.Component {
     constructor() {
@@ -41,7 +42,7 @@ class Toolbar extends React.Component {
                                 </NavLink>
                             </NavItem>
                         </Nav>
-                        <NavLink to="/signup" onClick={() => { window.location.reload(); localStorage.removeItem("IDNumber") }} style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
+                        <NavLink to="/signup" onClick={() => { window.location.reload(); encryptStorage.removeItem("IDNumber") }} style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
                             <i className="fa fa-power-off" style={{ marginRight: "5px" }}></i>
                             LOGOUT
                         </NavLink>

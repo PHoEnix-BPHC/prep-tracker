@@ -5,6 +5,7 @@ import { firestore } from "../../config"
 import "./CardLayout.css"
 import { Chapters } from "../../Data Files/IT"
 import Topic from "./Topic"
+import { encryptStorage } from "../Encryption"
 
 class CardLayout extends React.Component {
     constructor() {
@@ -20,7 +21,7 @@ class CardLayout extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
+        const user = encryptStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(Document => {
             this.setState({ role: Document.data().role }, () => {
                 firestore.collection(this.state.role).doc(user).get().then(doc => {

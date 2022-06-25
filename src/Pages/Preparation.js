@@ -1,4 +1,5 @@
 import React from "react"
+import { encryptStorage } from "../Components/Encryption"
 import Loading from "../Components/Loading"
 import CardLayout from "../Components/Preparation/CardLayout"
 import CardListLayout from "../Components/Preparation/CardListLayout"
@@ -16,7 +17,7 @@ class Preparation extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
+        const user = encryptStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(Document => {
             this.setState({ currentLayout: Document.data().preparationLayout, isLoading: false })
         }).catch(() => {

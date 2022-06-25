@@ -5,6 +5,7 @@ import CardLayout from "../../Assets/CardLayout.png"
 import ListLayout from "../../Assets/ListLayout.png"
 import CardListLayout from "../../Assets/CardListLayout.png"
 import { firestore } from "../../config";
+import { encryptStorage } from "../Encryption";
 
 
 class PreparationLayout extends React.Component {
@@ -19,7 +20,7 @@ class PreparationLayout extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
+        const user = encryptStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(document => {
             this.setState({ newLayout: document.data().preparationLayout, isLoading: false })
         }).catch(() => {
@@ -32,7 +33,7 @@ class PreparationLayout extends React.Component {
     render() {
         const onSave = () => {
             this.setState({ isLoading: true })
-            const idNo = localStorage.getItem("IDNumber")
+            const idNo = encryptStorage.getItem("IDNumber")
             firestore.collection("users").doc(idNo).update({
                 preparationLayout: this.state.newLayout
             }).then(() => {

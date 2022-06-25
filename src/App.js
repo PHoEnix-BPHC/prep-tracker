@@ -11,6 +11,7 @@ import Competition from './Pages/Competition';
 import Preparation from './Pages/Preparation';
 import UserHome from './Pages/UserHome';
 import React from 'react';
+import { encryptStorage } from "./Components/Encryption"
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +21,7 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    const user = localStorage.getItem("IDNumber")
+    const user = encryptStorage.getItem("IDNumber")
     this.setState({ userId: user })
   }
   render() {
