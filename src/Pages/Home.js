@@ -20,7 +20,7 @@ class Home extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const idNo = encryptStorage.getItem("IDNumber")
+        const idNo = localStorage.getItem("IDNumber")
         firestore.collection("users").doc(idNo).get().then(document => {
             this.setState({ role: document.data().role }, () => {
                 firestore.collection(this.state.role).doc(idNo).get().then((document) => {

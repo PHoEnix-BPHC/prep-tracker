@@ -19,7 +19,7 @@ class Stats extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(Document => {
             const role = Document.data().role
             let time = {

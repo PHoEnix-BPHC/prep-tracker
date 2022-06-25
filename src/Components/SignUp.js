@@ -28,7 +28,7 @@ class SignUp extends React.Component {
         }
     }
     componentDidMount() {
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         this.setState({ user: user })
     }
     render() {
@@ -88,7 +88,7 @@ class SignUp extends React.Component {
                     role: "",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
-                    encryptStorage.setItem("IDNumber", idNo)
+                    localStorage.setItem("IDNumber", idNo)
                     this.setState({ alert: "Account created!! Redirecting...", isLoading: false, isModal: true })
                     setTimeout(() => {
                         this.setState({ alert: "" })
@@ -103,7 +103,7 @@ class SignUp extends React.Component {
         }
         const onRoleSubmit = () => {
             this.setState({ isLoading: true, isModal: false })
-            const idNo = encryptStorage.getItem("IDNumber")
+            const idNo = localStorage.getItem("IDNumber")
             if (this.state.role === "IT") {
                 firestore.collection(this.state.role).doc(idNo).set({
                     totalQuestions: totalQuestions,

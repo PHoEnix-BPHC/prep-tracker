@@ -24,7 +24,7 @@ class Profile extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const idNo = encryptStorage.getItem("IDNumber")
+        const idNo = localStorage.getItem("IDNumber")
         firestore.collection("users").doc(idNo).get().then((document) => {
             this.setState({ user: document.data(), uploadedPicture: document.data().uploadedPicture, isLoading: false })
         }).catch(() => {
@@ -41,7 +41,7 @@ class Profile extends React.Component {
         }
         const onRoleSubmit = () => {
             this.setState({ isLoading: true, isModal: false })
-            const idNo = encryptStorage.getItem("IDNumber")
+            const idNo = localStorage.getItem("IDNumber")
             let exists = true
             firestore.collection(this.state.newRole).doc(idNo).get().then(document => {
                 exists = document.exists
@@ -177,7 +177,7 @@ class Profile extends React.Component {
             }, null, () => {
                 storage.ref("images").child(profilePicture.name).getDownloadURL().then(url => {
                     this.setState({ uploadedPicture: url }, () => {
-                        const user = encryptStorage.getItem("IDNumber")
+                        const user = localStorage.getItem("IDNumber")
                         firestore.collection("users").doc(user).update({
                             uploadedPicture: this.state.uploadedPicture
                         }).then(() => {

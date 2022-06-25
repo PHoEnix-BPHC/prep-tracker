@@ -4,7 +4,7 @@ import { encryptStorage } from "./Encryption"
 
 class PrivateRoute extends React.Component {
     render() {
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         if (user) return this.props.children
         else return <Navigate to="/login" />
     }

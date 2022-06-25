@@ -17,7 +17,7 @@ class ChapterWise extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: false })
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(doc => {
             this.setState({ role: doc.data().role }, () => {
                 if (this.state.role === "IT") {

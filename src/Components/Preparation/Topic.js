@@ -20,7 +20,7 @@ class Topic extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         firestore.collection("users").doc(user).get().then(Document => {
             this.setState({ role: Document.data().role }, () => {
                 firestore.collection(this.state.role).doc(user).get().then(doc => {
@@ -49,7 +49,7 @@ class Topic extends React.Component {
         }
         const saveProgress = () => {
             this.setState({ isModal: false })
-            const user = encryptStorage.getItem("IDNumber")
+            const user = localStorage.getItem("IDNumber")
             const chapterList = chapterCompleteCheck(this.state.chapters)
             const topics = calculateTopicCompletion(chapterList)
             const questions = calculateQuestionCompletion(chapterList)

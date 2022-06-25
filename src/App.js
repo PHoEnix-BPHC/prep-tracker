@@ -21,7 +21,7 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    const user = encryptStorage.getItem("IDNumber")
+    const user = localStorage.getItem("IDNumber")
     this.setState({ userId: user })
   }
   render() {

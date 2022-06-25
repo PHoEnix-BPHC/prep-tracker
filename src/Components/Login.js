@@ -26,7 +26,7 @@ class Login extends React.Component {
         }
     }
     componentDidMount() {
-        const user = encryptStorage.getItem("IDNumber")
+        const user = localStorage.getItem("IDNumber")
         this.setState({ user: user })
     }
     render() {
@@ -123,7 +123,7 @@ class Login extends React.Component {
                     allDocuments.forEach(document => {
                         bcrypt.compare(this.state.password, document.data().password).then(result => {
                             if (result) {
-                                encryptStorage.setItem("IDNumber", document.data().idNo)
+                                localStorage.setItem("IDNumber", document.data().idNo)
                                 this.setState({ alert: "Login Successful. Redirecting..", isLoading: false })
                                 setTimeout(() => {
                                     this.setState({ alert: "" })
