@@ -144,6 +144,12 @@ class Login extends React.Component {
                         })
                     })
                 }
+            }).catch((err) => {
+                console.log(err.message);
+                this.setState({ error: "Some error has occurred. Please try again later", isLoading: false })
+                setTimeout(() => {
+                    this.setState({ error: "" })
+                }, 3000)
             })
         }
         if (this.state.user)
