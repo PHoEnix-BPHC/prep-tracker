@@ -10,8 +10,7 @@ import Profile from './Pages/Profile';
 import Competition from './Pages/Competition';
 import Preparation from './Pages/Preparation';
 import UserHome from './Pages/UserHome';
-import React from 'react';
-import { encryptStorage } from "./Components/Encryption"
+import React from 'react'
 
 class App extends React.Component {
   constructor() {
