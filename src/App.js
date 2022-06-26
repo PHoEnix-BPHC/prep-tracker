@@ -12,6 +12,7 @@ import Preparation from './Pages/Preparation';
 import UserHome from './Pages/UserHome';
 import React from 'react'
 import Jobs from './Pages/Jobs';
+import FAQs from './Pages/FAQs';
 import { encryptStorage } from './Components/Encryption';
 
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
           <Route path="/preparation" element={<PrivateRoute><Preparation /></PrivateRoute>} />
           <Route path="/competition" element={<PrivateRoute><Competition /></PrivateRoute>} />
           <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
+          <Route path="/faqs" element={<PrivateRoute><FAQs /></PrivateRoute>} />
           <Route path="/" exact element={<UserHome />} />
         </Routes>
       </div>

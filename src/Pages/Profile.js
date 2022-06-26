@@ -8,6 +8,7 @@ import { ChaptersA, totalQuestionsA, totalTopicsA } from "../Data Files/Core"
 import { ChaptersDA, totalQuestionsDA, totalTopicsDA } from "../Data Files/Digital ASIC Engineer"
 import PreparationLayout from "../Components/Profile/PreparationLayout"
 import { encryptStorage } from "../Components/Encryption"
+import Footer from "../Components/Footer/Footer"
 
 class Profile extends React.Component {
     constructor() {
@@ -278,6 +279,7 @@ class Profile extends React.Component {
                         </Button>
                     </ModalFooter>
                 </Modal>
+                <Footer />
             </div>
         )
     }

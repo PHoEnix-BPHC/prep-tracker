@@ -1,5 +1,6 @@
 import React from "react"
 import "./Footer.css"
+import { Link } from "react-router-dom"
 
 class Footer extends React.Component {
     render() {
@@ -21,13 +22,12 @@ class Footer extends React.Component {
                     </div>
                     <div className="footer-spacing">
                         <div className="footer-heading">
-                            UPCOMING FEATURES
+                            RESOURCES
                         </div>
                         <div className="footer-content" style={{ textAlign: "center", color: "white", marginTop: "10px" }}>
-                            <div>FINANCE PREPARATION</div>
-                            <div>GATE EXAM PREPARATION</div>
-                            <div>PSUs </div>
-                            <div>HIGHER STUDIES GUIDANCE</div>
+                            <Link style={{ textDecoration: "none", color: "white" }} to="/faqs">Frequently Asked Questions</Link>
+                            {/* <div>PSUs </div>
+                            <div>HIGHER STUDIES GUIDANCE</div> */}
                         </div>
                     </div>
                     <div className="footer-line">

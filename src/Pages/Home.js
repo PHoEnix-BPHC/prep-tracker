@@ -6,6 +6,7 @@ import { firestore } from "../config"
 import CountUp from "react-countup"
 import Stats from "../Components/Stats"
 import { encryptStorage } from "../Components/Encryption"
+import Footer from "../Components/Footer/Footer"
 
 class Home extends React.Component {
     constructor() {
@@ -98,6 +99,7 @@ class Home extends React.Component {
                     </div>
                     <Stats />
                 </div>}
+                <Footer />
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React from "react"
 import { encryptStorage } from "../Components/Encryption"
+import Footer from "../Components/Footer/Footer"
 import Loading from "../Components/Loading"
 import CardLayout from "../Components/Preparation/CardLayout"
 import CardListLayout from "../Components/Preparation/CardListLayout"
@@ -29,7 +30,7 @@ class Preparation extends React.Component {
     }
     render() {
         return (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
                 {this.state.isLoading ? <Loading /> : <div>
                     <div style={{ fontSize: "15px", color: "#F93154", marginBottom: "10px", textAlign: "center" }}>
                         {this.state.error}
@@ -38,6 +39,7 @@ class Preparation extends React.Component {
                         {this.state.currentLayout === "listLayout" ? <ListLayout /> : <CardListLayout />}
                     </div>}
                 </div>}
+                <Footer />
             </div >
         )
     }

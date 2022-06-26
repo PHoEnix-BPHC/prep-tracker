@@ -3,6 +3,7 @@ import { Button, Card, Input, Label, Modal, ModalBody, ModalHeader, Alert, CardB
 import Loading from "../Components/Loading"
 import { firestore, storage } from "../config"
 import Moment from "react-moment"
+import Footer from "../Components/Footer/Footer"
 
 class Jobs extends React.Component {
     constructor() {
@@ -282,6 +283,10 @@ class Jobs extends React.Component {
                             </div>}
                     </ModalBody>
                 </Modal>
+                <div style={{ marginTop: "300px" }}>
+
+                </div>
+                <Footer />
             </div>
         )
     }

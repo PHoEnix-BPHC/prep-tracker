@@ -3,7 +3,6 @@ import Moment from "react-moment"
 import { firestore } from "../config"
 import { CircularProgressbarWithChildren } from "react-circular-progressbar"
 import Loading from "./Loading";
-import { encryptStorage } from "./Encryption";
 
 
 class Stats extends React.Component {
@@ -41,30 +40,30 @@ class Stats extends React.Component {
                     firestore.collection("users").get().then(Snapshot => {
                         var total = 0
                         Snapshot.forEach(document => {
-                            if (document.id.substring(0, 4) === "2020")
+                            if (document.id.substring(0, 4) === year)
                                 total += 1
                         })
                         this.setState({ totalUsers: total, isLoading: false })
                     }).catch(() => {
-                        this.setState({ error: "Some error occurred. Please try again" })
+                        this.setState({ error: "Some error occurred. Please try again", isLoading: false })
                         setTimeout(() => {
                             this.setState({ error: "" })
                         }, 3000)
                     })
                 }).catch(() => {
-                    this.setState({ error: "Some error occurred. Please try again" })
+                    this.setState({ error: "Some error occurred. Please try again", isLoading: false })
                     setTimeout(() => {
                         this.setState({ error: "" })
                     }, 3000)
                 })
             }).catch(() => {
-                this.setState({ error: "Some error occurred. Please try again" })
+                this.setState({ error: "Some error occurred. Please try again", isLoading: false })
                 setTimeout(() => {
                     this.setState({ error: "" })
                 }, 3000)
             })
         }).catch(() => {
-            this.setState({ error: "Some error occurred. Please try again" })
+            this.setState({ error: "Some error occurred. Please try again", isLoading: false })
             setTimeout(() => {
                 this.setState({ error: "" })
             }, 3000)
@@ -72,7 +71,7 @@ class Stats extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{ margin: "0px" }}>
                 {this.state.isLoading ? <Loading /> : <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <div style={{ fontSize: "15px", color: "#F93154", marginBottom: "10px", textAlign: "center" }}>
                         {this.state.error}
