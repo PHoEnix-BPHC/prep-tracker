@@ -54,7 +54,7 @@ class Jobs extends React.Component {
                 mode: this.state.currentMode,
                 message: this.state.message
             }).then(() => {
-                this.setState({ alert: "Your opportunity will be live after verification.", isLoading: "false" })
+                this.setState({ alert: "Your opportunity will be live after verification.", isLoading: false })
                 setTimeout(() => {
                     this.setState({ alert: "" })
                 }, 3000)
@@ -142,50 +142,60 @@ class Jobs extends React.Component {
                             LIST AN OPPORTUNITY
                         </Button>
                     </div>
-                    <div style={{ display: "flex", flexWrap: "wrap" }}>
-                        {this.state.allJobs.length === 0 ?
-                            // <div style={{ display: "flex", textAlign: "center", marginTop: "10px", color: "rgba(0,0,0,0.2)" }}>
-                            //     There are no off campus opportunities currently
-                            // </div>  :
-                            null :
-                            // <div>
-                            //     {this.state.allJobs.map(eachJob => {
-                            //         return (
-                            //             <Card style={{ margin: "30px", width: "275px" }}>
-                            //                 <CardBody>
-                            //                     <CardTitle tag="h4">
-                            //                         {eachJob.name}
-                            //                     </CardTitle>
-                            //                     <CardSubtitle style={{ color: "rgba(0,0,0,0.3)" }}>
-                            //                         {eachJob.role}
-                            //                     </CardSubtitle>
-                            //                     <div style={{ marginTop: "20px" }}>
-                            //                         <Badge color="warning">
-                            //                             {eachJob.type === "Intern3" ? "3 Months Internship" : <div>{eachJob.type === "Intern6" ? "6 Months Internship" : "Full Time"}</div>}
-                            //                         </Badge>
-                            //                     </div>
-                            //                     <div>
-                            //                         DEADLINE: <Moment>{eachJob.deadline}</Moment>
-                            //                     </div>
-                            //                     {eachJob.mode === "link" ? <Button color="success">
-                            //                         <a style={{ textDecoration: "none", color: "white" }} href={eachJob.link} target="_blank">APPLY NOW</a>
-                            //                     </Button> : <Button color="success">
-                            //                         <a style={{ textDecoration: "none", color: "white" }} href={`mailto: ${eachJob.link}`} target="_blank">APPLY NOW</a>
-                            //                     </Button>}
-                            //                     {eachJob.mode === "referral" ? <div>
-                            //                         <Button>
-                            //                             <a style={{ textDecoration: "none", color: "white" }} href={eachJob.jd} target="_blank">JOB DESCRIPTION</a>
-                            //                         </Button>
-                            //                     </div> : null}
-                            //                 </CardBody>
-                            //             </Card>
-                            //         )
-                            //     })}
-                            // </div>
-                            null
-                        }
-                    </div>
-                </div>}
+                    {this.state.allJobs.length === 0 ?
+                        <div style={{ textAlign: "center", marginTop: "10px", color: "rgba(0,0,0,0.2)" }}>
+                            There are no off campus opportunities currently
+                        </div> :
+                        <div>
+                            {this.state.allJobs.map(eachJob => {
+                                return (
+                                    <div>
+                                        {console.log(new Date().toLocaleDateString(), eachJob.deadline)}
+                                        {true ?
+                                            <Card style={{ margin: "30px", width: "275px" }}>
+                                                <CardBody>
+                                                    <CardTitle tag="h4">
+                                                        {eachJob.name}
+                                                    </CardTitle>
+                                                    <CardSubtitle style={{ color: "rgba(0,0,0,0.3)" }}>
+                                                        {eachJob.role}
+                                                    </CardSubtitle>
+                                                    <div style={{ marginTop: "0px" }}>
+                                                        <Badge color="warning">
+                                                            {eachJob.type === "Intern3" ? "3 Months Internship" : <div>{eachJob.type === "Intern6" ? "6 Months Internship" : "Full Time"}</div>}
+                                                        </Badge>
+                                                    </div>
+                                                    <div>
+                                                        DEADLINE: <Moment format="D MMM HH:MM " >{eachJob.deadline}</Moment> hrs
+                                                    </div>
+                                                    {eachJob.message ? <Alert style={{ textAlign: "left" }} color="warning">
+                                                        {eachJob.message}
+                                                    </Alert> : null}
+
+                                                    <div style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
+                                                        {eachJob.mode === "link" ? <div>
+                                                            <Button color="success">
+                                                                <a style={{ textDecoration: "none", color: "white" }} href={eachJob.link} target="_blank">APPLY NOW</a>
+                                                            </Button>
+                                                        </div> : <Button color="success">
+                                                            <a style={{ textDecoration: "none", color: "white" }} href={`mailto: ${eachJob.link}`} target="_blank">APPLY NOW</a>
+                                                        </Button>}
+                                                        {eachJob.mode === "referral" ? <div>
+                                                            <Button>
+                                                                <a style={{ textDecoration: "none", color: "white" }} href={eachJob.jd} target="_blank">JOB DESCRIPTION</a>
+                                                            </Button>
+                                                        </div> : null}
+                                                    </div>
+                                                </CardBody>
+                                            </Card> : null
+                                        }
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
+                </div>
+                }
                 <Modal isOpen={this.state.isModal} toggle={() => { this.setState({ isModal: !this.state.isModal }) }} >
                     <ModalHeader toggle={() => { this.setState({ isModal: false }) }}>
                         LIST AN OPPORTUNITY
