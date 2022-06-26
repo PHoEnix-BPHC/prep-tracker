@@ -16,64 +16,57 @@ class ChapterWise extends React.Component {
         }
     }
     componentDidMount() {
-        this.setState({ isLoading: false })
+        this.setState({ isLoading: true })
         const user = localStorage.getItem("IDNumber")
+        console.log(user);
         firestore.collection("users").doc(user).get().then(doc => {
+            let obj = []
             this.setState({ role: doc.data().role }, () => {
                 if (this.state.role === "IT") {
-                    this.setState({
-                        data: [
-                            { name: "Chapter 1", students: 0 },
-                            { name: "Chapter 2", students: 0 },
-                            { name: "Chapter 3", students: 0 },
-                            { name: "Chapter 4", students: 0 },
-                            { name: "Chapter 5", students: 0 }
-                        ]
-                    })
+                    obj = [
+                        { name: "Chapter 1", students: 0 },
+                        { name: "Chapter 2", students: 0 },
+                        { name: "Chapter 3", students: 0 },
+                        { name: "Chapter 4", students: 0 },
+                        { name: "Chapter 5", students: 0 }
+                    ]
                 }
                 else if (this.state.role === "Core") {
-                    this.setState({
-                        data: [
-                            { name: "Chapter 1", students: 0 },
-                            { name: "Chapter 2", students: 0 },
-                            { name: "Chapter 3", students: 0 },
-                            { name: "Chapter 4", students: 0 },
-                            { name: "Chapter 5", students: 0 }
-                        ]
-                    })
+                    obj = [
+                        { name: "Chapter 1", students: 0 },
+                        { name: "Chapter 2", students: 0 },
+                        { name: "Chapter 3", students: 0 },
+                        { name: "Chapter 4", students: 0 },
+                        { name: "Chapter 5", students: 0 },
+                        { name: "Chapter 6", students: 0 },
+                        { name: "Chapter 7", students: 0 }
+                    ]
                 }
-                else {
-                    this.setState({
-                        data: [
-                            { name: "Chapter 1", students: 0 },
-                            { name: "Chapter 2", students: 0 },
-                            { name: "Chapter 3", students: 0 },
-                            { name: "Chapter 4", students: 0 },
-                            { name: "Chapter 5", students: 0 }
-                        ]
+                firestore.collection(this.state.role).get().then(Snapshot => {
+                    console.log(Snapshot);
+                    Snapshot.forEach(document => {
+                        console.log(document.data())
+                        document.data().chapters.map((eachChapter, i) => {
+                            if (eachChapter.value) {
+                                obj[i].students += 1
+                                console.log(obj);
+                            }
+                        })
                     })
-                }
-            })
-            firestore.collection(this.state.role).get().then(Snapshot => {
-                Snapshot.forEach(document => {
-                    document.data().chapters.map((eachChapter, i) => {
-                        if (eachChapter.value) {
-                            this.state.data[i].students = this.state.data[i].students + 1
-                        }
-                    })
+                    console.log(obj);
+                    this.setState({ isLoading: false, data: obj }, () => console.log(this.state.data))
+                }).catch(() => {
+                    this.setState({ error: "Some error occurred. Please try again", isLoading: false })
+                    setTimeout(() => {
+                        this.setState({ error: "" })
+                    }, 3000)
                 })
-                this.setState({ isLoading: false })
             }).catch(() => {
-                this.setState({ error: "Some error occurred. Please try again" })
+                this.setState({ error: "Some error occurred. Please try again", isLoading: false })
                 setTimeout(() => {
                     this.setState({ error: "" })
                 }, 3000)
             })
-        }).catch(() => {
-            this.setState({ error: "Some error occurred. Please try again" })
-            setTimeout(() => {
-                this.setState({ error: "" })
-            }, 3000)
         })
     }
     render() {
