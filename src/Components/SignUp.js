@@ -278,7 +278,7 @@ class SignUp extends React.Component {
                                 IT
                             </option>
                             <option value="Core">
-                                CORE
+                                ET CORE
                             </option>
                             {/* <option vale="Digital ASIC Engineer">
                                 Digital ASIC Engineer

@@ -12,6 +12,7 @@ import Preparation from './Pages/Preparation';
 import UserHome from './Pages/UserHome';
 import React from 'react'
 import Jobs from './Pages/Jobs';
+import { encryptStorage } from './Components/Encryption';
 
 class App extends React.Component {
   constructor() {
