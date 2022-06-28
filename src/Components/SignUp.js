@@ -35,8 +35,23 @@ class SignUp extends React.Component {
         var disabled = !(this.state.branch !== "NA" && this.state.emailId && this.state.name && this.state.password) || !(this.state.confirmPassword === this.state.password)
         const onSubmit = async () => {
             this.setState({ isLoading: true })
-            const emailexp = new RegExp("^(f20)[0-2][0-9][0-9]{4}@hyderabad.bits-pilani.ac.in")
-            if (!emailexp.test(this.state.emailId)) {
+            const emailexp = /^(f20)[0-2][0-9]\d{4}(@hyderabad\.bits-pilani\.ac\.in)$/
+            const emailexp2 = /^(h20)[0-2][0-9]\d{6}(@hyderabad\.bits-pilani\.ac\.in)$/
+            const emailexp3 = /(@hyderabad\.bits-pilani\.ac\.in)$/
+            const { emailId } = this.state
+            if (!emailexp.test(emailId) && !(emailexp2.test(emailId) || emailexp3.test(emailId))) {
+                this.setState({ error: "Please enter a valid BITS email id", isLoading: false })
+                setTimeout(() => {
+                    this.setState({ error: "" })
+                }, 3000)
+            }
+            else if (!emailexp2.test(this.state.emailId) && !(emailexp.test(emailId) || emailexp3.test(emailId))) {
+                this.setState({ error: "Please enter a valid BITS email id", isLoading: false })
+                setTimeout(() => {
+                    this.setState({ error: "" })
+                }, 3000)
+            }
+            else if (!emailexp3.test(this.state.emailId) && !(emailexp2.test(emailId) || emailexp.test(emailId))) {
                 this.setState({ error: "Please enter a valid BITS email id", isLoading: false })
                 setTimeout(() => {
                     this.setState({ error: "" })
@@ -60,11 +75,19 @@ class SignUp extends React.Component {
                     code = "A4"
                 else if (this.state.branch === "PHARMA")
                     code = "A5"
+                else if (this.state.branch === "HD")
+                    code = "HD"
                 else
                     code = "A8"
-                year = this.state.emailId.substring(1, 5)
-                id = this.state.emailId.substring(5, 9)
-                var idNo = year + code + "PS" + id + "H"
+                var idNo = null
+                if (!(/\d/.test(this.state.emailId.substring(1, 3)))) {
+                    idNo = this.state.name
+                }
+                else {
+                    year = this.state.emailId.substring(1, 5)
+                    id = this.state.emailId.substring(5, 9)
+                    idNo = year + code + "PS" + id + "H"
+                }
                 var hashed_password = null
                 try {
                     const salt = await bcrypt.genSalt()
@@ -250,6 +273,12 @@ class SignUp extends React.Component {
                                 </option>
                                 <option value="PHARMA">
                                     Pharmacy
+                                </option>
+                                <option value="PROF">
+                                    Professor
+                                </option>
+                                <option value="HD">
+                                    Higher Degree
                                 </option>
                             </Input>
                             <Input onChange={onChange} placeholder="Enter your password" name="password" value={this.state.password} style={{ marginBottom: "10px" }} type="password" />

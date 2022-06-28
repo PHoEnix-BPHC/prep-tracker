@@ -176,14 +176,14 @@ class Jobs extends React.Component {
                                                     <div style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
                                                         {eachJob.mode === "link" ? <div>
                                                             <Button color="success">
-                                                                <a style={{ textDecoration: "none", color: "white" }} href={eachJob.link} target="_blank">APPLY NOW</a>
+                                                                <a rel="noreferrer" style={{ textDecoration: "none", color: "white" }} href={eachJob.link} target="_blank">APPLY NOW</a>
                                                             </Button>
                                                         </div> : <Button color="success">
-                                                            <a style={{ textDecoration: "none", color: "white" }} href={`mailto: ${eachJob.link}`} target="_blank">APPLY NOW</a>
+                                                            <a rel="noreferrer" style={{ textDecoration: "none", color: "white" }} href={`mailto: ${eachJob.link}`} target="_blank">APPLY NOW</a>
                                                         </Button>}
                                                         {eachJob.mode === "referral" ? <div>
                                                             <Button>
-                                                                <a style={{ textDecoration: "none", color: "white" }} href={eachJob.jd} target="_blank">JOB DESCRIPTION</a>
+                                                                <a style={{ textDecoration: "none", color: "white" }} href={eachJob.jd} target="_blank" rel="noreferrer">JOB DESCRIPTION</a>
                                                             </Button>
                                                         </div> : null}
                                                     </div>

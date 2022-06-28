@@ -13,12 +13,16 @@ class Stats extends React.Component {
             error: "",
             totalUsers: 0,
             yourRank: 1,
-            daysOfUsage: null
+            daysOfUsage: null,
+            user: ""
         }
     }
     componentDidMount() {
         this.setState({ isLoading: true })
         const user = localStorage.getItem("IDNumber")
+        if (!(/\d/.test(user))) {
+            this.setState({ user: "Professor" })
+        }
         firestore.collection("users").doc(user).get().then(Document => {
             const role = Document.data().role
             let time = {
@@ -33,10 +37,13 @@ class Stats extends React.Component {
                 const yourTotal = Doc.data().completedQuestions
                 const year = user.substring(0, 4)
                 firestore.collection(role).get().then(Snapshot => {
+                    var rank = 1
                     Snapshot.forEach(doc => {
                         if ((doc.data().completedQuestions > yourTotal && doc.id !== user) && year === doc.id.substring(0, 4))
-                            this.setState({ yourRank: this.state.yourRank + 1 })
+                            rank += 1
+                        console.log(rank);
                     })
+                    this.setState({ yourRank: rank })
                     firestore.collection("users").get().then(Snapshot => {
                         var total = 0
                         Snapshot.forEach(document => {
@@ -86,12 +93,12 @@ class Stats extends React.Component {
                                 USERS
                             </CircularProgressbarWithChildren>
                         </div>
-                        {/* <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
+                        {/* {this.state.user === "Professor" ? null : <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
                             <CircularProgressbarWithChildren value={1} maxValue={1}>
                                 {this.state.yourRank} <br />
                                 YOUR RANK
                             </CircularProgressbarWithChildren>
-                        </div> */}
+                        </div>} */}
                         <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
                             <CircularProgressbarWithChildren value={1} maxValue={1}>
                                 <Moment unit="days" diff={this.state.daysOfUsage}>{new Date()}</Moment>
