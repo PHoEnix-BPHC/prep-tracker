@@ -147,7 +147,7 @@ class Jobs extends React.Component {
                         <div style={{ textAlign: "center", marginTop: "10px", color: "rgba(0,0,0,0.2)" }}>
                             There are no off campus opportunities currently
                         </div> :
-                        <div>
+                        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
                             {this.state.allJobs.map(eachJob => {
                                 return (
                                     <div>
