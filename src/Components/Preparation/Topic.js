@@ -4,7 +4,7 @@ import Loading from "../Loading"
 import { firestore } from "../../config"
 import { calculateChapterCompletion, calculateTopicCompletion, calculateQuestionCompletion, chapterCompleteCheck } from "../Functions"
 import { Chapters } from "../../Data Files/IT"
-"../Encryption"
+import { ls } from "../Encryption"
 
 class Topic extends React.Component {
     constructor() {
