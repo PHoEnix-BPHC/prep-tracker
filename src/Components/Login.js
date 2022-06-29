@@ -5,7 +5,7 @@ import { CardBody, Card, CardTitle, CardSubtitle, Input, Button, ModalHeader, Mo
 import bcrypt from "bcryptjs"
 import emailjs from "@emailjs/browser"
 import Loading from "./Loading"
-import { encryptStorage } from "./Encryption"
+import { ls } from "./Encryption"
 
 
 class Login extends React.Component {
@@ -26,7 +26,7 @@ class Login extends React.Component {
         }
     }
     componentDidMount() {
-        const user = localStorage.getItem("IDNumber")
+        const user = ls.get("IDNumber")
         this.setState({ user: user })
     }
     render() {
@@ -123,7 +123,7 @@ class Login extends React.Component {
                     allDocuments.forEach(document => {
                         bcrypt.compare(this.state.password, document.data().password).then(result => {
                             if (result) {
-                                localStorage.setItem("IDNumber", document.data().idNo)
+                                ls.save("IDNumber", document.data().idNo)
                                 this.setState({ alert: "Login Successful. Redirecting..", isLoading: false })
                                 setTimeout(() => {
                                     this.setState({ alert: "" })
@@ -136,8 +136,8 @@ class Login extends React.Component {
                                     this.setState({ error: "" })
                                 }, 3000)
                             }
-                        }).catch(() => {
-                            this.setState({ error: "Some error has occurred. Please try again later", isLoading: false })
+                        }).catch((err) => {
+                            this.setState({ error: err.message, isLoading: false })
                             setTimeout(() => {
                                 this.setState({ error: "" })
                             }, 3000)
@@ -146,7 +146,7 @@ class Login extends React.Component {
                 }
             }).catch((err) => {
                 console.log(err.message);
-                this.setState({ error: "Some error has occurred. Please try again later", isLoading: false })
+                this.setState({ error: err.message, isLoading: false })
                 setTimeout(() => {
                     this.setState({ error: "" })
                 }, 3000)

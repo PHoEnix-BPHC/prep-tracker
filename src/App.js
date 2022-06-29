@@ -13,7 +13,7 @@ import UserHome from './Pages/UserHome';
 import React from 'react'
 import Jobs from './Pages/Jobs';
 import FAQs from './Pages/FAQs';
-import { encryptStorage } from './Components/Encryption';
+import { ls } from "./Components/Encryption"
 
 class App extends React.Component {
   constructor() {
@@ -23,7 +23,7 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    const user = localStorage.getItem("IDNumber")
+    const user = ls.get("IDNumber")
     this.setState({ userId: user })
   }
   render() {

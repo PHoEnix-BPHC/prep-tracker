@@ -1,7 +1,3 @@
-import { EncryptStorage } from "encrypt-storage";
+import localstorageEncrypt from "localstorage-encrypt";
 
-
-export const encryptStorage = new EncryptStorage("a8e309mchiaehbiusdhfsbdfsdf", {
-    storageType: "encryptStorage",
-    encAlgorithm: "Rabbit"
-})
+export const ls = localstorageEncrypt.init("storage", "dsfsfdsdhfbsydfvasyfdvasdgfbasdgfvasdgfvasdfasdfasdfasdf", 108)

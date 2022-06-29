@@ -1,7 +1,6 @@
 import React from "react"
 import { Navbar, NavItem, Nav, Collapse, NavbarBrand, NavbarToggler, NavLink } from "reactstrap"
 import Logo from "../Assets/Logo.png"
-import { encryptStorage } from "./Encryption"
 
 class Toolbar extends React.Component {
     constructor() {

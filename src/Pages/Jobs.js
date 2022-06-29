@@ -34,7 +34,7 @@ class Jobs extends React.Component {
             Snapshot.forEach(document => {
                 temp.push(document.data())
             })
-            this.setState({ allJobs: temp, isLoading: false }, () => { console.log(this.state.allJobs) })
+            this.setState({ allJobs: temp, isLoading: false })
         }).catch(() => {
             this.setState({ error: "Some error occured. Please try again later.", isLoading: false })
             setTimeout(() => {
@@ -150,8 +150,7 @@ class Jobs extends React.Component {
                         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
                             {this.state.allJobs.map(eachJob => {
                                 return (
-                                    <div>
-                                        {console.log(new Date().toLocaleDateString(), eachJob.deadline)}
+                                    <div key={eachJob.id}>
                                         {true ?
                                             <Card style={{ margin: "30px", width: "275px" }}>
                                                 <CardBody>

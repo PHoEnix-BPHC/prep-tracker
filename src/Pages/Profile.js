@@ -7,8 +7,8 @@ import { Chapters, totalQuestions, totalTopics } from "../Data Files/IT"
 import { ChaptersA, totalQuestionsA, totalTopicsA } from "../Data Files/Core"
 import { ChaptersDA, totalQuestionsDA, totalTopicsDA } from "../Data Files/Digital ASIC Engineer"
 import PreparationLayout from "../Components/Profile/PreparationLayout"
-import { encryptStorage } from "../Components/Encryption"
 import Footer from "../Components/Footer/Footer"
+import { ls } from "../Components/Encryption"
 
 class Profile extends React.Component {
     constructor() {
@@ -25,7 +25,7 @@ class Profile extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const idNo = localStorage.getItem("IDNumber")
+        const idNo = ls.get("IDNumber")
         firestore.collection("users").doc(idNo).get().then((document) => {
             this.setState({ user: document.data(), uploadedPicture: document.data().uploadedPicture, isLoading: false })
         }).catch(() => {
@@ -42,7 +42,7 @@ class Profile extends React.Component {
         }
         const onRoleSubmit = () => {
             this.setState({ isLoading: true, isModal: false })
-            const idNo = localStorage.getItem("IDNumber")
+            const idNo = ls.get("IDNumber")
             let exists = true
             firestore.collection(this.state.newRole).doc(idNo).get().then(document => {
                 exists = document.exists
@@ -178,7 +178,7 @@ class Profile extends React.Component {
             }, null, () => {
                 storage.ref("images").child(profilePicture.name).getDownloadURL().then(url => {
                     this.setState({ uploadedPicture: url }, () => {
-                        const user = localStorage.getItem("IDNumber")
+                        const user = ls.get("IDNumber")
                         firestore.collection("users").doc(user).update({
                             uploadedPicture: this.state.uploadedPicture
                         }).then(() => {

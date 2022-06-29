@@ -1,8 +1,8 @@
-import { encryptStorage } from "../Encryption"
 import React from "react"
 import { Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 import { firestore } from "../../config"
 import Loading from "../Loading"
+import { ls } from "../Encryption";
 
 class ChapterWise extends React.Component {
     constructor() {
@@ -17,8 +17,7 @@ class ChapterWise extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
-        console.log(user);
+        const user = ls.get("IDNumber")
         firestore.collection("users").doc(user).get().then(doc => {
             let obj = []
             this.setState({ role: doc.data().role }, () => {
@@ -43,18 +42,14 @@ class ChapterWise extends React.Component {
                     ]
                 }
                 firestore.collection(this.state.role).get().then(Snapshot => {
-                    console.log(Snapshot);
                     Snapshot.forEach(document => {
-                        console.log(document.data())
                         document.data().chapters.map((eachChapter, i) => {
                             if (eachChapter.value) {
                                 obj[i].students += 1
-                                console.log(obj);
                             }
                         })
                     })
-                    console.log(obj);
-                    this.setState({ isLoading: false, data: obj }, () => console.log(this.state.data))
+                    this.setState({ isLoading: false, data: obj })
                 }).catch(() => {
                     this.setState({ error: "Some error occurred. Please try again", isLoading: false })
                     setTimeout(() => {

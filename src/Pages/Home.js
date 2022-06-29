@@ -5,8 +5,8 @@ import { CircularProgressbarWithChildren } from "react-circular-progressbar"
 import { firestore } from "../config"
 import CountUp from "react-countup"
 import Stats from "../Components/Stats"
-import { encryptStorage } from "../Components/Encryption"
 import Footer from "../Components/Footer/Footer"
+import { ls } from "../Components/Encryption";
 
 class Home extends React.Component {
     constructor() {
@@ -21,7 +21,7 @@ class Home extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const idNo = localStorage.getItem("IDNumber")
+        const idNo = ls.get("IDNumber")
         firestore.collection("users").doc(idNo).get().then(document => {
             this.setState({ role: document.data().role }, () => {
                 firestore.collection(this.state.role).doc(idNo).get().then((document) => {

@@ -1,5 +1,4 @@
 import React from "react"
-import ComingSoon from "../Components/ComingSoon"
 import ChapterWise from "../Components/Competition/ChapterWise"
 import Footer from "../Components/Footer/Footer"
 import Loading from "../Components/Loading"

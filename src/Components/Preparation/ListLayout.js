@@ -4,7 +4,7 @@ import { firestore } from "../../config"
 import { chapterCompleteCheck, calculateTopicCompletion, calculateChapterCompletion, calculateQuestionCompletion } from "../Functions"
 import { Chapters } from "../../Data Files/IT"
 import Loading from "../Loading"
-import { encryptStorage } from "../Encryption"
+import { ls } from "../Encryption";
 
 class ListLayout extends React.Component {
     constructor() {
@@ -21,7 +21,7 @@ class ListLayout extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
+        const user = ls.get("IDNumber")
         firestore.collection("users").doc(user).get().then(Document => {
             this.setState({ role: Document.data().role }, () => {
                 firestore.collection(this.state.role).doc(user).get().then(doc => {
@@ -56,7 +56,7 @@ class ListLayout extends React.Component {
         }
         const saveProgress = () => {
             this.setState({ isLoading: true })
-            const user = localStorage.getItem("IDNumber")
+            const user = ls.get("IDNumber")
             const chapterList = chapterCompleteCheck(this.state.chapters)
             const topics = calculateTopicCompletion(chapterList)
             const questions = calculateQuestionCompletion(chapterList)

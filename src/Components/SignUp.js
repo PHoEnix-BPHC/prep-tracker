@@ -8,7 +8,7 @@ import { ChaptersDA, totalQuestionsDA, totalTopicsDA } from "../Data Files/Digit
 import { ChaptersA, totalQuestionsA, totalTopicsA } from "../Data Files/Core"
 import { CardBody, Card, CardTitle, CardSubtitle, Input, Button, Modal, ModalHeader, ModalFooter, Label, ModalBody } from "reactstrap"
 import Loading from "../Components/Loading"
-import { encryptStorage } from "./Encryption"
+import { ls } from "./Encryption"
 
 class SignUp extends React.Component {
     constructor() {
@@ -28,7 +28,7 @@ class SignUp extends React.Component {
         }
     }
     componentDidMount() {
-        const user = localStorage.getItem("IDNumber")
+        const user = ls.get("IDNumber")
         this.setState({ user: user })
     }
     render() {
@@ -111,7 +111,7 @@ class SignUp extends React.Component {
                     role: "",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
-                    localStorage.setItem("IDNumber", idNo)
+                    ls.save("IDNumber", idNo)
                     this.setState({ alert: "Account created!! Redirecting...", isLoading: false, isModal: true })
                     setTimeout(() => {
                         this.setState({ alert: "" })
@@ -126,7 +126,7 @@ class SignUp extends React.Component {
         }
         const onRoleSubmit = () => {
             this.setState({ isLoading: true, isModal: false })
-            const idNo = localStorage.getItem("IDNumber")
+            const idNo = ls.get("IDNumber")
             if (this.state.role === "IT") {
                 firestore.collection(this.state.role).doc(idNo).set({
                     totalQuestions: totalQuestions,

@@ -3,7 +3,7 @@ import Moment from "react-moment"
 import { firestore } from "../config"
 import { CircularProgressbarWithChildren } from "react-circular-progressbar"
 import Loading from "./Loading";
-
+import { ls } from "./Encryption";
 
 class Stats extends React.Component {
     constructor() {
@@ -19,7 +19,7 @@ class Stats extends React.Component {
     }
     componentDidMount() {
         this.setState({ isLoading: true })
-        const user = localStorage.getItem("IDNumber")
+        const user = ls.get("IDNumber")
         if (!(/\d/.test(user))) {
             this.setState({ user: "Professor" })
         }
@@ -41,7 +41,6 @@ class Stats extends React.Component {
                     Snapshot.forEach(doc => {
                         if ((doc.data().completedQuestions > yourTotal && doc.id !== user) && year === doc.id.substring(0, 4))
                             rank += 1
-                        console.log(rank);
                     })
                     this.setState({ yourRank: rank })
                     firestore.collection("users").get().then(Snapshot => {
@@ -93,12 +92,12 @@ class Stats extends React.Component {
                                 USERS
                             </CircularProgressbarWithChildren>
                         </div>
-                        {/* {this.state.user === "Professor" ? null : <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
+                        {this.state.user === "Professor" ? null : <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
                             <CircularProgressbarWithChildren value={1} maxValue={1}>
                                 {this.state.yourRank} <br />
                                 YOUR RANK
                             </CircularProgressbarWithChildren>
-                        </div>} */}
+                        </div>}
                         <div style={{ width: "250px", margin: "30px", textAlign: "center", fontSize: "25px" }}>
                             <CircularProgressbarWithChildren value={1} maxValue={1}>
                                 <Moment unit="days" diff={this.state.daysOfUsage}>{new Date()}</Moment>
