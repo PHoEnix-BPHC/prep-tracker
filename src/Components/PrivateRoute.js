@@ -6,7 +6,7 @@ class PrivateRoute extends React.Component {
     render() {
         const user = ls.get("IDNumber")
         if (user) return this.props.children
-        else return <Navigate to="/login" />
+        else return <Navigate to="/prep-tracker/login" />
     }
 }
 

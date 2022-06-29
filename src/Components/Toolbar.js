@@ -1,6 +1,7 @@
 import React from "react"
 import { Navbar, NavItem, Nav, Collapse, NavbarBrand, NavbarToggler, NavLink } from "reactstrap"
 import Logo from "../Assets/Logo.png"
+import { ls } from "../Components/Encryption"
 
 class Toolbar extends React.Component {
     constructor() {
@@ -13,7 +14,7 @@ class Toolbar extends React.Component {
         return (
             <div>
                 <Navbar color="danger" expand="md" dark>
-                    <NavbarBrand href="/dashboard">
+                    <NavbarBrand href="/prep-tracker/dashboard">
                         <img src={Logo} style={{ width: "40px" }} alt="logo" />
                         PREPTRACKER
                     </NavbarBrand>
@@ -21,32 +22,32 @@ class Toolbar extends React.Component {
                     <Collapse isOpen={this.state.visible} navbar>
                         <Nav className="me-auto" navbar>
                             <NavItem>
-                                <NavLink href="/dashboard">
+                                <NavLink href="/prep-tracker/dashboard">
                                     Dashboard
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/preparation">
+                                <NavLink href="/prep-tracker/preparation">
                                     Preparation
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/competition">
+                                <NavLink href="/prep-tracker/competition">
                                     Competition
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/jobs">
+                                <NavLink href="/prep-tracker/jobs">
                                     Jobs
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/profile">
+                                <NavLink href="/prep-tracker/profile">
                                     My Profile
                                 </NavLink>
                             </NavItem>
                         </Nav>
-                        <NavLink to="/signup" onClick={() => { window.location.reload(); localStorage.removeItem("IDNumber") }} style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
+                        <NavLink to="/prep-tracker/signup" onClick={() => { window.location.reload(); ls.remove("IDNumber") }} style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
                             <i className="fa fa-power-off" style={{ marginRight: "5px" }}></i>
                             LOGOUT
                         </NavLink>

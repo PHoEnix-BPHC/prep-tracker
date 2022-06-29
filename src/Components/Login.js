@@ -153,7 +153,7 @@ class Login extends React.Component {
             })
         }
         if (this.state.user)
-            return <Navigate to="/dashboard" />
+            return <Navigate to="/prep-tracker/dashboard" />
         else return (
             <div style={{ display: "flex", justifyContent: "center", textAlign: "center", margin: "10px" }}>
                 {this.state.isLoading ? <Loading /> : <Card style={{ width: "300px" }}>
@@ -163,7 +163,7 @@ class Login extends React.Component {
                         </CardTitle>
                         <CardSubtitle style={{ cursor: "pointer", display: "flex", justifyContent: "center", marginBottom: "20px" }}>
                             Create an account?
-                            <Link to="/signup" style={{ cursor: "pointer", marginLeft: "5px", color: "black", textDecoration: "none" }}>
+                            <Link to="/prep-tracker/signup" style={{ cursor: "pointer", marginLeft: "5px", color: "black", textDecoration: "none" }}>
                                 Click Here
                             </Link>
                         </CardSubtitle>

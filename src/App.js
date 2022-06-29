@@ -31,15 +31,15 @@ class App extends React.Component {
       <div>
         {this.state.userId ? <Toolbar /> : <HomeToolbar />}
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/dashboard" element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-          <Route path="/preparation" element={<PrivateRoute><Preparation /></PrivateRoute>} />
-          <Route path="/competition" element={<PrivateRoute><Competition /></PrivateRoute>} />
-          <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
-          <Route path="/faqs" element={<PrivateRoute><FAQs /></PrivateRoute>} />
-          <Route path="/" exact element={<UserHome />} />
+          <Route path="/prep-tracker/login" element={<Login />} />
+          <Route path="/prep-tracker/signup" element={<SignUp />} />
+          <Route path="/prep-tracker/dashboard" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/prep-tracker/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+          <Route path="/prep-tracker/preparation" element={<PrivateRoute><Preparation /></PrivateRoute>} />
+          <Route path="/prep-tracker/competition" element={<PrivateRoute><Competition /></PrivateRoute>} />
+          <Route path="/prep-tracker/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
+          <Route path="/prep-tracker/faqs" element={<PrivateRoute><FAQs /></PrivateRoute>} />
+          <Route path="/prep-tracker" exact element={<UserHome />} />
         </Routes>
       </div>
     )

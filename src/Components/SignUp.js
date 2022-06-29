@@ -229,7 +229,7 @@ class SignUp extends React.Component {
             this.setState({ [name]: value }, () => console.log(this.state))
         }
         if (this.state.user)
-            return <Navigate to="/dashboard" />
+            return <Navigate to="/prep-tracker/dashboard" />
         else return (
             <div style={{ display: "flex", justifyContent: "center", textAlign: "center", margin: "10px" }}>
                 {this.state.isLoading ? <Loading /> :
@@ -240,7 +240,7 @@ class SignUp extends React.Component {
                             </CardTitle>
                             <CardSubtitle style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
                                 Already Registered?
-                                <Link to="/login" style={{ cursor: "pointer", marginLeft: "5px", color: "black", textDecoration: "none" }}>
+                                <Link to="/prep-tracker/login" style={{ cursor: "pointer", marginLeft: "5px", color: "black", textDecoration: "none" }}>
                                     Log In
                                 </Link>
                             </CardSubtitle>

@@ -1,5 +1,6 @@
 import React from "react"
 import { Navbar, NavbarBrand, NavLink } from "reactstrap"
+import Logo from "../Assets/Logo.png"
 
 class HomeToolbar extends React.Component {
     constructor() {
@@ -12,10 +13,11 @@ class HomeToolbar extends React.Component {
         return (
             <div>
                 <Navbar color="danger" expand="md" dark>
-                    <NavbarBrand href="/">
+                    <NavbarBrand href="/prep-tracker">
+                        <img src={Logo} style={{ width: "40px" }} alt="logo" />
                         PREPTRACKER
                     </NavbarBrand>
-                    <NavLink href="/login" style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
+                    <NavLink href="/prep-tracker/login" style={{ color: "whitesmoke", cursor: "pointer", margin: "0px" }}>
                         SIGNUP/LOGIN
                     </NavLink>
                 </Navbar>
