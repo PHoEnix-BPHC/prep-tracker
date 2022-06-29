@@ -1,6 +1,5 @@
 {
   "name": "prep-tracker",
-  "homepage": "/prep-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
